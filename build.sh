@@ -11,8 +11,6 @@ flags=(
 
 inc=(
     -I.
-    -I../../
-    -I../../src/
 )
 
 fail_op() {
