@@ -1,4 +1,5 @@
 #include <libfract.h>
+#include <limits.h>
 
 /*********************************************
  -> OS independent pseudo random algorithms <- 
@@ -25,4 +26,9 @@ unsigned int rand_next()
 void rand_seed(unsigned int seed) 
 {
     global_seed = seed;
+}
+
+float randf_norm()
+{
+    return (float)rand_next() / (float)INT_MAX;
 }

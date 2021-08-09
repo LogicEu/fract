@@ -9,6 +9,16 @@ float signf(float f)
     return (float)((f >= 0.0f) - (f < 0.0f));
 }
 
+float minf(float a, float b)
+{
+    return a * (float)(a <= b) + b * (float)(b < a);
+}
+
+float maxf(float a, float b)
+{
+    return a * (float)(a >= b) + b * (float)(b > a);
+}
+
 float clampf(float val, float min, float max)
 {
     float t = (val < min) * min + (val >= min) * val;

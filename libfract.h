@@ -67,12 +67,15 @@ void rand_seed(unsigned int seed);
 unsigned int rand_uint(unsigned int num);
 unsigned int rand_num();
 unsigned int rand_next();
+float randf_one();
 
 /********************************************
  -> floating point functions and utilities <- 
 ********************************************/
 
 float signf(float f);
+float minf(float a, float b);
+float maxf(float a, float b);
 float clampf(float val, float min, float max);
 float lerpf(float a, float b, float t);
 float smooth_lerpf(float a, float b, float t);
