@@ -67,7 +67,7 @@ void rand_seed(unsigned int seed);
 unsigned int rand_uint(unsigned int num);
 unsigned int rand_num();
 unsigned int rand_next();
-float randf_one();
+float randf_norm();
 
 /********************************************
  -> floating point functions and utilities <- 
