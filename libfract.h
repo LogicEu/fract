@@ -129,6 +129,7 @@ float vec2_dot(vec2 v1, vec2 v2);
 vec2 vec2_cross(vec2 v1, vec2 v2);
 vec2 vec2_norm(vec2 v);
 vec2 vec2_normf(vec2 v);
+vec2 vec2_prod(vec2 a, vec2 b);
 void vec2_move(vec2* v, vec2 move);
 void vec2_scale(vec2* v, float scale);
 
@@ -157,6 +158,7 @@ float vec3_dot(vec3 v1, vec3 v2);
 vec3 vec3_cross(vec3 v1, vec3 v2);
 vec3 vec3_norm(vec3 v);
 vec3 vec3_normf(vec3 v);
+vec3 vec3_prod(vec3 a, vec3 b);
 void vec3_move(vec3* v, vec3 move);
 void vec3_scale(vec3* v, float scale);
 
@@ -180,6 +182,7 @@ float vec4_dot(vec4 v1, vec4 v2);
 vec4 vec4_cross(vec4 v1, vec4 v2);
 vec4 vec4_norm(vec4 v);
 vec4 vec4_normf(vec4 v);
+vec4 vec4_prod(vec4 a, vec4 b);
 void vec4_move(vec4* v, vec4 move);
 void vec4_scale(vec4* v, float scale);
 

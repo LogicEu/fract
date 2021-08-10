@@ -96,6 +96,12 @@ vec4 vec4_normf(vec4 v)
     return vec4_mult(v, faster_inverse_sqrt(vec4_dot(v, v)));
 }
 
+vec4 vec4_prod(vec4 a, vec4 b)
+{
+    vec4 ret = {a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w};
+    return ret;
+}
+
 void vec4_move(vec4* v, vec4 move)
 {
     v->x += move.x;

@@ -92,6 +92,12 @@ vec2 vec2_normf(vec2 v)
     return vec2_mult(v, faster_inverse_sqrt(vec2_dot(v, v)));
 }
 
+vec2 vec2_prod(vec2 a, vec2 b)
+{
+    vec2 ret = {a.x * b.x, a.y * b.y};
+    return ret; 
+}
+
 void vec2_move(vec2* v, vec2 move)
 {
     v->x += move.x;
