@@ -77,6 +77,11 @@ vec2 vec2_norm(vec2 v)
     return vec2_mult(v, fast_inverse_sqrt(vec2_dot(v, v)));
 }
 
+vec2 vec2_normf(vec2 v)
+{
+    return vec2_mult(v, faster_inverse_sqrt(vec2_dot(v, v)));
+}
+
 void vec2_move(vec2* v, vec2 move)
 {
     v->x += move.x;

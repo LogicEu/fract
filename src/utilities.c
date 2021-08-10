@@ -55,11 +55,23 @@ float smoothstep(float a, float b, float x)
 float fast_inverse_sqrt(float num) // Viva Quake forever!
 {
 	float x = num * 0.5;
-	float y  = num;
-	long i  = *(long*)&y;
-	i  = 0x5f3759df - (i >> 1);
-	y  = *(float *)&i;
-	y  = y * (1.5 - (x * y * y));
+	float y = num;
+	long i = *(long*)&y;
+	i = 0x5f3759df - (i >> 1);
+	y = *(float *)&i;
+	y = y * (1.5 - (x * y * y));
+    y = y * (1.5 - (x * y * y));
+	return y;
+}
+
+float faster_inverse_sqrt(float num)
+{
+	float x = num * 0.5;
+	float y = num;
+	long i = *(long*)&y;
+	i = 0x5f3759df - (i >> 1);
+	y = *(float *)&i;
+	y = y * (1.5 - (x * y * y));
     //y = y * (1.5 - (x * y * y));
 	return y;
 }
@@ -67,6 +79,11 @@ float fast_inverse_sqrt(float num) // Viva Quake forever!
 float fast_sqrt(float num)
 {
     return num * fast_inverse_sqrt(num);
+}
+
+float faster_sqrt(float num)
+{
+    return num * faster_inverse_sqrt(num);
 }
 
 /******************************************************

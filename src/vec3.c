@@ -81,6 +81,11 @@ vec3 vec3_norm(vec3 v)
     return vec3_mult(v, fast_inverse_sqrt(vec3_dot(v, v)));
 }
 
+vec3 vec3_normf(vec3 v)
+{
+    return vec3_mult(v, faster_inverse_sqrt(vec3_dot(v, v)));
+}
+
 void vec3_move(vec3* v, vec3 move)
 {
     v->x += move.x;

@@ -84,6 +84,8 @@ float remapf(float input_a, float input_b, float out_a, float out_b, float val);
 float smoothstep(float a, float b, float x);
 float fast_inverse_sqrt(float num);
 float fast_sqrt(float num);
+float faster_inverse_sqrt(float num);
+float faster_sqrt(float num);
 
 /******************************************************
  -> floating point angles and vector transformations <- 
@@ -124,6 +126,7 @@ float vec2_dist(vec2 v1, vec2 v2);
 float vec2_dot(vec2 v1, vec2 v2);
 vec2 vec2_cross(vec2 v1, vec2 v2);
 vec2 vec2_norm(vec2 v);
+vec2 vec2_normf(vec2 v);
 void vec2_move(vec2* v, vec2 move);
 void vec2_scale(vec2* v, float scale);
 
@@ -149,6 +152,7 @@ float vec3_dist(vec3 v1, vec3 v2);
 float vec3_dot(vec3 v1, vec3 v2);
 vec3 vec3_cross(vec3 v1, vec3 v2);
 vec3 vec3_norm(vec3 v);
+vec3 vec3_normf(vec3 v);
 void vec3_move(vec3* v, vec3 move);
 void vec3_scale(vec3* v, float scale);
 
@@ -169,6 +173,7 @@ float vec4_dist(vec4 v1, vec4 v2);
 float vec4_dot(vec4 v1, vec4 v2);
 vec4 vec4_cross(vec4 v1, vec4 v2);
 vec4 vec4_norm(vec4 v);
+vec4 vec4_normf(vec4 v);
 void vec4_move(vec4* v, vec4 move);
 void vec4_scale(vec4* v, float scale);
 
