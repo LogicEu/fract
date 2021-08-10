@@ -51,9 +51,19 @@ vec4 vec4_div(vec4 v, float f)
     return ret;
 }
 
+float vec4_sqmag(vec4 v)
+{
+    return v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w;
+}
+
 float vec4_mag(vec4 v)
 {
     return fast_sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
+}
+
+float vec4_sqdist(vec4 v1, vec4 v2)
+{
+    return vec4_sqmag(vec4_sub(v1, v2));
 }
 
 float vec4_dist(vec4 v1, vec4 v2)

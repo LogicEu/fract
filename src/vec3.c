@@ -51,9 +51,19 @@ vec3 vec3_div(vec3 v, float f)
     return ret;
 }
 
+float vec3_sqmag(vec3 v)
+{
+    return v.x * v.x + v.y * v.y + v.z * v.z;
+}
+
 float vec3_mag(vec3 v)
 {
     return fast_sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+}
+
+float vec3_sqdist(vec3 v1, vec3 v2)
+{
+    return vec3_sqmag(vec3_sub(v1, v2));
 }
 
 float vec3_dist(vec3 v1, vec3 v2)

@@ -51,9 +51,19 @@ vec2 vec2_div(vec2 v, float f)
     return ret;
 }
 
+float vec2_sqmag(vec2 v)
+{
+    return v.x * v.x + v.y * v.y;
+}
+
 float vec2_mag(vec2 v)
 {
     return fast_sqrt(v.x * v.x + v.y * v.y);
+}
+
+float vec2_sqdist(vec2 v1, vec2 v2)
+{
+    return vec2_sqmag(vec2_sub(v1, v2));
 }
 
 float vec2_dist(vec2 v1, vec2 v2)
