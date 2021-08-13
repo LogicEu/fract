@@ -1,5 +1,5 @@
-#ifndef LIBFRACT_H
-#define LIBFRACT_H
+#ifndef FRACT_MATH_H
+#define FRACT_MATH_H
 
 #ifdef __cplusplus
 extern "C" {
