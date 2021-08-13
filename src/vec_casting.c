@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /***********************************************
  -> integer and floating point vector casting <- 

@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /**************************************
  -> 2D perlin noise useful functions <- 

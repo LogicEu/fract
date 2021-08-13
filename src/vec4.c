@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /********************************************
  -> four dimensional floating point vector <- 
@@ -94,6 +94,11 @@ vec4 vec4_norm(vec4 v)
 vec4 vec4_normf(vec4 v)
 {
     return vec4_mult(v, faster_inverse_sqrt(vec4_dot(v, v)));
+}
+
+vec4 vec4_normal(vec4 v)
+{
+    return vec4_mult(v, 1.0f / sqrtf(vec4_sqmag(v)));
 }
 
 vec4 vec4_prod(vec4 a, vec4 b)

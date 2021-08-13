@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /********************************************
  -> floating point functions and utilities <- 

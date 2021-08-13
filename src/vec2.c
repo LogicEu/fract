@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /*******************************************
  -> two dimensional floating point vector <- 
@@ -90,6 +90,11 @@ vec2 vec2_norm(vec2 v)
 vec2 vec2_normf(vec2 v)
 {
     return vec2_mult(v, faster_inverse_sqrt(vec2_dot(v, v)));
+}
+
+vec2 vec2_normal(vec2 v)
+{
+    return vec2_mult(v, 1.0f / sqrtf(vec2_sqmag(v)));
 }
 
 vec2 vec2_prod(vec2 a, vec2 b)

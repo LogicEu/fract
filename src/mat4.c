@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /******************************************
  -> 4x4 matrix functions and operations  <- 

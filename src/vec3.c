@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /*********************************************
  -> three dimensional floating point vector <- 
@@ -94,6 +94,11 @@ vec3 vec3_norm(vec3 v)
 vec3 vec3_normf(vec3 v)
 {
     return vec3_mult(v, faster_inverse_sqrt(vec3_dot(v, v)));
+}
+
+vec3 vec3_normal(vec3 v)
+{
+    return vec3_mult(v, 1.0f / sqrtf(vec3_sqmag(v)));
 }
 
 vec3 vec3_prod(vec3 a, vec3 b)

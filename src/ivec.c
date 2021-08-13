@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /*******************************
  -> integer vector structures <- 

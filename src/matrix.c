@@ -1,4 +1,4 @@
-#include <libfract.h>
+#include <fract.h>
 
 /**************************************************
  -> two dimensional square matrix data structure <- 
