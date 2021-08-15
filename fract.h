@@ -73,6 +73,7 @@ float randf_norm();
  -> floating point functions and utilities <- 
 ********************************************/
 
+float absf(float f);
 float signf(float f);
 float minf(float a, float b);
 float maxf(float a, float b);

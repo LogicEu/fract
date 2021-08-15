@@ -4,6 +4,11 @@
  -> floating point functions and utilities <- 
 ********************************************/
 
+float absf(float f)
+{
+    return (float)(f >= 0.0f) - f * (float)(f < 0.0f);
+}
+
 float signf(float f)
 {
     return (float)((f >= 0.0f) - (f < 0.0f));
