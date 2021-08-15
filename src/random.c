@@ -32,3 +32,8 @@ float randf_norm()
 {
     return (float)rand_next() / (float)INT_MAX;
 }
+
+float randf_signed()
+{
+    return 2.0 * ((float)rand_next() / (float)INT_MAX) - 1.0;
+}
