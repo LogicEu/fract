@@ -63,12 +63,14 @@ float vec2_mag(vec2 v)
 
 float vec2_sqdist(vec2 v1, vec2 v2)
 {
-    return vec2_sqmag(vec2_sub(v1, v2));
+    vec2 v = _vec2_sub(v1, v2);
+    return _vec2_sqmag(v);
 }
 
 float vec2_dist(vec2 v1, vec2 v2)
 {
-    return vec2_mag(vec2_sub(v1, v2));
+    vec2 v = _vec2_sub(v1, v2);
+    return _vec2_mag(v);
 }
 
 float vec2_dot(vec2 v1, vec2 v2)
@@ -84,17 +86,23 @@ vec2 vec2_cross(vec2 v1, vec2 v2)
 
 vec2 vec2_norm(vec2 v)
 {
-    return vec2_mult(v, fast_inverse_sqrt(vec2_dot(v, v)));
+    float d = fast_inverse_sqrt(_vec2_sqmag(v));
+    vec2 ret = {v.x * d, v.y * d};
+    return ret;
 }
 
 vec2 vec2_normf(vec2 v)
 {
-    return vec2_mult(v, faster_inverse_sqrt(vec2_dot(v, v)));
+    float d = faster_inverse_sqrt(_vec2_sqmag(v));
+    vec2 ret = {v.x * d, v.y * d};
+    return ret;
 }
 
 vec2 vec2_normal(vec2 v)
 {
-    return vec2_mult(v, 1.0f / sqrtf(vec2_sqmag(v)));
+    float d = 1.0f / _vec2_mag(v);
+    vec2 ret = {v.x * d, v.y * d};
+    return ret;
 }
 
 vec2 vec2_prod(vec2 a, vec2 b)
@@ -123,21 +131,21 @@ vec2 vec2_rotate(vec2 src, float rads)
 
 vec2 vec2_rotate_around(vec2 src, vec2 center, float rads)
 {
-    vec2 v = vec2_sub(src, center);
+    vec2 v = _vec2_sub(src, center);
     float r = vec2_to_rad(v) + rads;
     return vec2_add(center, vec2_mult(rad_to_vec2(r), vec2_mag(v)));
 }
 
 vec2 vec2_scale_around(vec2 src, vec2 center, float scale)
 {
-    vec2 v = vec2_sub(src, center);
+    vec2 v = _vec2_sub(src, center);
     float r = vec2_to_rad(v);
     return vec2_add(center, vec2_mult(rad_to_vec2(r), vec2_mag(v) * scale));
 }
 
 vec2 vec2_rotate_and_scale_around(vec2 src, vec2 center, float rads, float scale)
 {
-    vec2 v = vec2_sub(src, center);
+    vec2 v = _vec2_sub(src, center);
     float r = vec2_to_rad(v) + rads;
     return vec2_add(center, vec2_mult(rad_to_vec2(r), vec2_mag(v) * scale));
 }

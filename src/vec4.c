@@ -63,12 +63,14 @@ float vec4_mag(vec4 v)
 
 float vec4_sqdist(vec4 v1, vec4 v2)
 {
-    return vec4_sqmag(vec4_sub(v1, v2));
+    vec4 v = _vec4_sub(v1, v2);
+    return _vec4_sqmag(v);
 }
 
 float vec4_dist(vec4 v1, vec4 v2)
 {
-    return vec4_mag(vec4_sub(v1, v2));
+    vec4 v = _vec4_sub(v1, v2);
+    return _vec4_mag(v);
 }
 
 float vec4_dot(vec4 v1, vec4 v2)
@@ -79,26 +81,32 @@ float vec4_dot(vec4 v1, vec4 v2)
 //Non standard -- w component is 1.0f (quaterion)
 vec4 vec4_cross(vec4 v1, vec4 v2)
 {
-    vec3 tmp1 = vec3_new(v1.x, v1.y, v1.z);
-    vec3 tmp2 = vec3_new(v2.x, v2.y, v2.z);
-    vec3 cross = vec3_cross(tmp1, tmp2);
-    vec4 ret = vec4_new(cross.x, cross.y, cross.z, 1.0f);
+    vec3 tmp1 = _vec3_new(v1.x, v1.y, v1.z);
+    vec3 tmp2 = _vec3_new(v2.x, v2.y, v2.z);
+    vec3 cross = _vec3_cross(tmp1, tmp2);
+    vec4 ret = _vec4_new(cross.x, cross.y, cross.z, 1.0f);
     return ret;
 }
 
 vec4 vec4_norm(vec4 v)
 {
-    return vec4_mult(v, fast_inverse_sqrt(vec4_dot(v, v)));
+    float d = fast_inverse_sqrt(_vec4_sqmag(v));
+    vec4 ret = {v.x * d, v.y * d, v.z * d, v.w * d};
+    return ret;
 }
 
 vec4 vec4_normf(vec4 v)
 {
-    return vec4_mult(v, faster_inverse_sqrt(vec4_dot(v, v)));
+    float d = faster_inverse_sqrt(_vec4_sqmag(v));
+    vec4 ret = {v.x * d, v.y * d, v.z * d, v.w * d};
+    return ret;
 }
 
 vec4 vec4_normal(vec4 v)
 {
-    return vec4_mult(v, 1.0f / sqrtf(vec4_sqmag(v)));
+    float d = 1.0f / _vec4_mag(v);
+    vec4 ret = {v.x * d, v.y * d, v.z * d, v.w * d};
+    return ret;
 }
 
 vec4 vec4_prod(vec4 a, vec4 b)

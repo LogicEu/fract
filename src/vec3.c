@@ -63,12 +63,14 @@ float vec3_mag(vec3 v)
 
 float vec3_sqdist(vec3 v1, vec3 v2)
 {
-    return vec3_sqmag(vec3_sub(v1, v2));
+    vec3 v = _vec3_sub(v1, v2);
+    return _vec3_sqmag(v);
 }
 
 float vec3_dist(vec3 v1, vec3 v2)
 {
-    return vec3_mag(vec3_sub(v1, v2));
+    vec3 v = _vec3_sub(v1, v2);
+    return _vec3_mag(v);
 }
 
 float vec3_dot(vec3 v1, vec3 v2)
@@ -88,17 +90,23 @@ vec3 vec3_cross(vec3 v1, vec3 v2)
 
 vec3 vec3_norm(vec3 v)
 {
-    return vec3_mult(v, fast_inverse_sqrt(vec3_dot(v, v)));
+    float d = fast_inverse_sqrt(_vec3_sqmag(v));
+    vec3 ret = {v.x * d, v.y * d, v.z * d};
+    return ret;
 }
 
 vec3 vec3_normf(vec3 v)
 {
-    return vec3_mult(v, faster_inverse_sqrt(vec3_dot(v, v)));
+    float d = faster_inverse_sqrt(_vec3_sqmag(v));
+    vec3 ret = {v.x * d, v.y * d, v.z * d};
+    return ret;
 }
 
 vec3 vec3_normal(vec3 v)
 {
-    return vec3_mult(v, 1.0f / sqrtf(vec3_sqmag(v)));
+    float d = 1.0f / _vec3_mag(v);
+    vec3 ret = {v.x * d, v.y * d, v.z * d};
+    return ret;
 }
 
 vec3 vec3_prod(vec3 a, vec3 b)
