@@ -1,4 +1,4 @@
-# libfract makefile
+# fract makefile
 
 STD=-std=c99
 WFLAGS=-Wall -Wextra
@@ -15,7 +15,7 @@ ifeq ($(OS),Darwin)
 	OSFLAGS=-dynamiclib
 	LIB=$(NAME).dylib
 else
-	OSFLAGS=-lm -fPIC
+	OSFLAGS=-lm -shared -fPIC
 	LIB=$(NAME).so
 endif
 
