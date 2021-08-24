@@ -6,22 +6,22 @@
 
 float absf(float f)
 {
-    return (float)(f >= 0.0f) - f * (float)(f < 0.0f);
+    return f * (f >= 0.0f) - f * (f < 0.0f);
 }
 
 float signf(float f)
 {
-    return (float)((f >= 0.0f) - (f < 0.0f));
+    return (f >= 0.0f) - (f < 0.0f);
 }
 
 float minf(float a, float b)
 {
-    return a * (float)(a <= b) + b * (float)(b < a);
+    return a * (a <= b) + b * (b < a);
 }
 
 float maxf(float a, float b)
 {
-    return a * (float)(a >= b) + b * (float)(b > a);
+    return a * (a >= b) + b * (b > a);
 }
 
 float clampf(float val, float min, float max)
