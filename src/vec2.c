@@ -78,9 +78,10 @@ float vec2_dot(vec2 v1, vec2 v2)
     return v1.x * v2.x + v1.y * v2.y;
 }
 
+// 2D cross product is not mathematically defined: perpendicular difference instead
 vec2 vec2_cross(vec2 v1, vec2 v2)
 {
-    vec2 ret = {v1.y - v2.y, v1.x - v2.x};
+    vec2 ret = {-(v1.y - v2.y), v1.x - v2.x};
     return ret;
 }
 
