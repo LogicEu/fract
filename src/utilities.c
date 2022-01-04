@@ -37,7 +37,7 @@ float lerpf(float a, float b, float t)
 
 float smooth_lerpf(float a, float b, float t)
 {
-    return lerpf(a, b, t * t * (3 - 2 * t));
+    return lerpf(a, b, t * t * (3.0 - 2.0 * t));
 }
 
 float inverse_lerpf(float a, float b, float val)
@@ -54,7 +54,7 @@ float remapf(float input_a, float input_b, float out_a, float out_b, float val)
 float smoothstep(float a, float b, float x) 
 {
     x = clampf((x - a) / (b - a), 0.0f, 1.0f);
-    return x * x * (3 - 2 * x);
+    return x * x * (3.0 - 2.0 * x);
 }
 
 float fast_inverse_sqrt(float num) // Viva Quake forever!
