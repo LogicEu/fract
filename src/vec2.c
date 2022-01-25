@@ -112,6 +112,12 @@ vec2 vec2_prod(vec2 a, vec2 b)
     return ret; 
 }
 
+vec2 vec2_lerp(vec2 a, vec2 b, float t)
+{
+    vec2 ret = {_lerpf(a.x, b.x, t), _lerpf(a.y, b.y, t)};
+    return ret;
+}
+
 void vec2_move(vec2* v, vec2 move)
 {
     v->x += move.x;

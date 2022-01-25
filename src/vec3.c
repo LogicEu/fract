@@ -115,6 +115,12 @@ vec3 vec3_prod(vec3 a, vec3 b)
     return ret;
 }
 
+vec3 vec3_lerp(vec3 a, vec3 b, float t)
+{
+    vec3 ret = {_lerpf(a.x, b.x, t), _lerpf(a.y, b.y, t), _lerpf(a.z, b.z, t)};
+    return ret;
+}
+
 void vec3_move(vec3* v, vec3 move)
 {
     v->x += move.x;

@@ -115,6 +115,12 @@ vec4 vec4_prod(vec4 a, vec4 b)
     return ret;
 }
 
+vec4 vec4_lerp(vec4 a, vec4 b, float t)
+{
+    vec4 ret = {_lerpf(a.x, b.x, t), _lerpf(a.y, b.y, t), _lerpf(a.z, b.z, t), _lerpf(a.w, b.w, t)};
+    return ret;
+}
+
 void vec4_move(vec4* v, vec4 move)
 {
     v->x += move.x;
