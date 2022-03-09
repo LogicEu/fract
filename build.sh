@@ -26,8 +26,7 @@ fail_os() {
 }
 
 mac_dlib() {
-    $cc ${flags[*]} ${inc[*]} -dynamiclib $src -o $name.dylib &&\
-    install_name_tool -id @executable_path/$name.dylib $name.dylib 
+    $cc ${flags[*]} ${inc[*]} -dynamiclib $src -o $name.dylib 
 }
 
 linux_dlib() {
@@ -48,11 +47,25 @@ slib() {
     $cc ${flags[*]} ${inc[*]} -c $src && ar -crv $name.a *.o && rm *.o
 }
 
+cleanf() {
+    if [ -f $1 ]; then
+        rm $1  
+    fi
+}
+
+clean() {
+    cleanf $name.a
+    cleanf $name.so
+    cleanf $name.dylib
+}
+
 case "$1" in
     "-d")
         dlib;;
     "-s")
         slib;;
+    "-clean")
+        clean;;
     *)
         fail_op;;
 esac

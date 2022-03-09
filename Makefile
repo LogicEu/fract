@@ -24,4 +24,7 @@ $(NAME).a: $(SRC)
 
 shared: $(SRC)
 	$(CC) -o $(LIB) $(SRC) $(CFLAGS) $(OSFLAGS)
+
+clean: build.sh
+	./$^ -$@
 	
