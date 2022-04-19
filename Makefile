@@ -20,11 +20,16 @@ else
 endif
 
 $(NAME).a: $(SRC)
-	$(CC) $(CFLAGS) -c $(SRC) && ar -crv $(NAME).a *.o && rm *.o
+	$(CC) $(CFLAGS) -c $(SRC) && ar -cr $(NAME).a *.o && rm *.o
 
 shared: $(SRC)
 	$(CC) -o $(LIB) $(SRC) $(CFLAGS) $(OSFLAGS)
 
 clean: build.sh
-	./$^ -$@
-	
+	./$^ $@
+
+install: build.sh
+	./$^ $@
+
+uninstall: build.sh
+	./$^ $@	
