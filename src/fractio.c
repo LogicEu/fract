@@ -39,7 +39,7 @@ void mat2_print(mat2 m)
 {
     for (int y = 0; y < 2; y++) {
         for (int x = 0; x < 2; x++) {
-            printf("%f ", m.data[x][y]);
+            printf("%f, ", m.data[x][y]);
         }
         printf("\n");
     }
@@ -50,7 +50,7 @@ void mat3_print(mat3 m)
 {
     for (int y = 0; y < 3; y++) {
         for (int x = 0; x < 3; x++) {
-            printf("%f ", m.data[x][y]);
+            printf("%f, ", m.data[x][y]);
         }
         printf("\n");
     }

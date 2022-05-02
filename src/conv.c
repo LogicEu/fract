@@ -1,8 +1,8 @@
 #include <fract.h>
 
-/***********************************************
- -> integer and floating point vector casting <- 
-***********************************************/
+/**************************************************
+ -> integer and floating point vector conversion <- 
+**************************************************/
 
 ivec2 vec2_to_ivec2(vec2 v)
 {

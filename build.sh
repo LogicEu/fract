@@ -38,9 +38,9 @@ clean() {
 }
 
 install() {
-    [ "$EUID" -ne 0 ] && echo "Run with sudo to install." && exit
+    [ "$EUID" -ne 0 ] && echo "Run with sudo to install" && exit
 
-    shared && static
+    static && shared
     cp fract.h /usr/local/include
 
     [ -f $name.a ] && mv $name.a /usr/local/lib
@@ -52,7 +52,7 @@ install() {
 }
 
 uninstall() {
-    [ "$EUID" -ne 0 ] && echo "Run with sudo to uninstall." && exit
+    [ "$EUID" -ne 0 ] && echo "Run with sudo to uninstall" && exit
 
     cleanf /usr/local/include/fract.h
     cleanf /usr/local/lib/$name.a
@@ -75,7 +75,7 @@ case "$1" in
     "uninstall")
         uninstall;;
     *)
-        echo "Run with 'shared' or 'static' to build."
-        echo "Use 'install' to build and install in /usr/local."
-        echo "Use 'clean' to remove local builds.";;
+        echo "Run with 'shared' or 'static' to build"
+        echo "Use 'install' to build and install in /usr/local"
+        echo "Use 'clean' to remove local builds";;
 esac
