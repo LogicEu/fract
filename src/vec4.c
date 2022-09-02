@@ -58,7 +58,7 @@ float vec4_sqmag(vec4 v)
 
 float vec4_mag(vec4 v)
 {
-    return fast_sqrt(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
+    return sqrtfast(v.x * v.x + v.y * v.y + v.z * v.z + v.w * v.w);
 }
 
 float vec4_sqdist(vec4 v1, vec4 v2)
@@ -90,14 +90,14 @@ vec4 vec4_cross(vec4 v1, vec4 v2)
 
 vec4 vec4_norm(vec4 v)
 {
-    float d = fast_inverse_sqrt(_vec4_sqmag(v));
+    float d = isqrtfast(_vec4_sqmag(v));
     vec4 ret = {v.x * d, v.y * d, v.z * d, v.w * d};
     return ret;
 }
 
 vec4 vec4_normf(vec4 v)
 {
-    float d = faster_inverse_sqrt(_vec4_sqmag(v));
+    float d = isqrtfaster(_vec4_sqmag(v));
     vec4 ret = {v.x * d, v.y * d, v.z * d, v.w * d};
     return ret;
 }

@@ -85,14 +85,14 @@ float minf(float a, float b);
 float maxf(float a, float b);
 float clampf(float val, float min, float max);
 float lerpf(float a, float b, float t);
-float smooth_lerpf(float a, float b, float t);
-float inverse_lerpf(float a, float b, float val);
-float remapf(float input_a, float input_b, float out_a, float out_b, float val);
+float smoothlerpf(float a, float b, float t);
+float ilerpf(float a, float b, float val);
+float remapf(float in_a, float in_b, float out_a, float out_b, float val);
 float smoothstep(float a, float b, float x);
-float fast_inverse_sqrt(float num);
-float faster_inverse_sqrt(float num);
-float fast_sqrt(float num);
-float faster_sqrt(float num);
+float isqrtfast(float num);
+float isqrtfaster(float num);
+float sqrtfast(float num);
+float sqrtfaster(float num);
 
 /******************************************************
  -> floating point angles and vector transformations <- 

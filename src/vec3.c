@@ -58,7 +58,7 @@ float vec3_sqmag(vec3 v)
 
 float vec3_mag(vec3 v)
 {
-    return fast_sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
+    return sqrtfast(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
 float vec3_sqdist(vec3 v1, vec3 v2)
@@ -90,14 +90,14 @@ vec3 vec3_cross(vec3 v1, vec3 v2)
 
 vec3 vec3_norm(vec3 v)
 {
-    float d = fast_inverse_sqrt(_vec3_sqmag(v));
+    float d = isqrtfast(_vec3_sqmag(v));
     vec3 ret = {v.x * d, v.y * d, v.z * d};
     return ret;
 }
 
 vec3 vec3_normf(vec3 v)
 {
-    float d = faster_inverse_sqrt(_vec3_sqmag(v));
+    float d = isqrtfaster(_vec3_sqmag(v));
     vec3 ret = {v.x * d, v.y * d, v.z * d};
     return ret;
 }

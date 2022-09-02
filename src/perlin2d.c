@@ -35,9 +35,9 @@ float noise2d(float x, float y, int seed)
     int t = noise_int_2d(x_int + 1, y_int, seed);
     int u = noise_int_2d(x_int, y_int + 1, seed);
     int v = noise_int_2d(x_int + 1, y_int + 1, seed);
-    float low = smooth_lerpf(s, t, x_frac);
-    float high = smooth_lerpf(u, v, x_frac);
-    return smooth_lerpf(low, high, y_frac);
+    float low = smoothlerpf(s, t, x_frac);
+    float high = smoothlerpf(u, v, x_frac);
+    return smoothlerpf(low, high, y_frac);
 }
 
 float perlin2d(float x, float y, float freq, int depth, int seed)

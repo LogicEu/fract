@@ -35,20 +35,19 @@ float lerpf(float a, float b, float t)
     return (a * (1.0 - t)) + (b * t);
 }
 
-float smooth_lerpf(float a, float b, float t)
+float smoothlerpf(float a, float b, float t)
 {
     return lerpf(a, b, t * t * (3.0 - 2.0 * t));
 }
 
-float inverse_lerpf(float a, float b, float val)
+float ilerpf(float a, float b, float val)
 {
-    return (val - a) / (b - a);
+    return (b - a != 0.0) ? (val - a) / (b - a) : 0.0;
 }
 
-float remapf(float input_a, float input_b, float out_a, float out_b, float val)
+float remapf(float in_a, float in_b, float out_a, float out_b, float val)
 {
-    float t = inverse_lerpf(input_a, input_b, val);
-    return lerpf(out_a, out_b, t);
+    return lerpf(out_a, out_b, ilerpf(in_a, in_b, val));
 }
 
 float smoothstep(float a, float b, float x) 
@@ -57,7 +56,7 @@ float smoothstep(float a, float b, float x)
     return x * x * (3.0 - 2.0 * x);
 }
 
-float fast_inverse_sqrt(float num) /* Viva Quake forever! */
+float isqrtfast(float num) /* Viva Quake forever! */
 {
 	float x = num * 0.5;
 	float y = num;
@@ -69,7 +68,7 @@ float fast_inverse_sqrt(float num) /* Viva Quake forever! */
 	return y;
 }
 
-float faster_inverse_sqrt(float num)
+float isqrtfaster(float num)
 {
 	float x = num * 0.5;
 	float y = num;
@@ -81,14 +80,14 @@ float faster_inverse_sqrt(float num)
 	return y;
 }
 
-float fast_sqrt(float num)
+float sqrtfast(float num)
 {
-    return num * fast_inverse_sqrt(num);
+    return num * isqrtfast(num);
 }
 
-float faster_sqrt(float num)
+float sqrtfaster(float num)
 {
-    return num * faster_inverse_sqrt(num);
+    return num * isqrtfaster(num);
 }
 
 /******************************************************
@@ -112,8 +111,7 @@ float vec2_to_rad(vec2 v)
 
 vec2 rad_to_vec2(float rad)
 {
-    vec2 ret = {cosf(rad), sinf(rad)};
-    return ret;
+    return (vec2){cosf(rad), sinf(rad)};
 }
 
 float vec2_2_rad(vec2 v1, vec2 v2)

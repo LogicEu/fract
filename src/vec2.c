@@ -58,7 +58,7 @@ float vec2_sqmag(vec2 v)
 
 float vec2_mag(vec2 v)
 {
-    return fast_sqrt(v.x * v.x + v.y * v.y);
+    return sqrtfast(v.x * v.x + v.y * v.y);
 }
 
 float vec2_sqdist(vec2 v1, vec2 v2)
@@ -87,14 +87,14 @@ vec2 vec2_cross(vec2 v1, vec2 v2)
 
 vec2 vec2_norm(vec2 v)
 {
-    float d = fast_inverse_sqrt(_vec2_sqmag(v));
+    float d = isqrtfast(_vec2_sqmag(v));
     vec2 ret = {v.x * d, v.y * d};
     return ret;
 }
 
 vec2 vec2_normf(vec2 v)
 {
-    float d = faster_inverse_sqrt(_vec2_sqmag(v));
+    float d = isqrtfaster(_vec2_sqmag(v));
     vec2 ret = {v.x * d, v.y * d};
     return ret;
 }
