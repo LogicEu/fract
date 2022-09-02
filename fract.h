@@ -76,8 +76,8 @@ float randf_signed();
 #define _minf(a, b) ((a) * ((a) <= (b)) + (b) * ((b) < (a)))
 #define _maxf(a, b) ((a) * ((a) >= (b)) + (b) * ((b) > (a)))
 #define _lerpf(a, b, t) (((a) * (1.0 - (t))) + ((b) * (t)))
-#define _smooth_lerpf(a, b, t) _lerpf(a, b, t * t * (3 - 2 * t))
-#define _inverse_lerpf(a, v, val) (((val) - (a)) / ((b) - (a)))
+#define _ilerpf(a, v, val) (((val) - (a)) / ((b) - (a)))
+#define _smoothlerpf(a, b, t) _lerpf(a, b, t * t * (3 - 2 * t))
 
 float absf(float f);
 float signf(float f);
