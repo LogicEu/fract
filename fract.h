@@ -314,6 +314,7 @@ mat4 mat4_look_at_LH(vec3 eye_position, vec3 eye_direction, vec3 eye_up);
 mat4 mat4_look_at_RH(vec3 eye_position, vec3 eye_direction, vec3 eye_up);
 mat4 mat4_look_at(vec3 eye_position, vec3 eye_direction, vec3 eye_up);
 mat4 mat4_model(vec3 translation, vec3 scale, vec3 rot_axis, float rot_degs);
+vec4 vec4_mult_mat4(vec4 v, mat4 m);
 
 
 /*-----------------------

@@ -128,9 +128,9 @@ mat4 mat4_perspective_RH(float fov, float aspect, float near, float far)
     float tan_half_fov = tanf(fov / 2.0f);
     m.data[0][0] = 1.0f / (aspect * tan_half_fov);
     m.data[1][1] = 1.0f / tan_half_fov;
-    m.data[2][2] = - (far + near) / (far - near);
-    m.data[2][3] = - 1.0f;
-    m.data[3][2] = - (2.0f * far * near) / (far - near);
+    m.data[2][2] = (far + near) / (far - near);
+    m.data[2][3] = 1.0f;
+    m.data[3][2] = (2.0f * far * near) / (far - near);
     return m;
 }
 
@@ -217,4 +217,14 @@ mat4 mat4_model(vec3 translation, vec3 scale, vec3 rot_axis, float rot_degs)
     model = mat4_rot(model, rot_degs, rot_axis);
     model = mat4_translate(model, translation);
     return model;
+}
+
+vec4 vec4_mult_mat4(vec4 v, mat4 m)
+{
+    vec4 p;
+    p.x = v.x * m.data[0][0] + v.y * m.data[1][0] + v.z * m.data[2][0] + v.w * m.data[3][0];
+    p.y = v.x * m.data[0][1] + v.y * m.data[1][1] + v.z * m.data[2][1] + v.w * m.data[3][1];
+    p.z = v.x * m.data[0][2] + v.y * m.data[1][2] + v.z * m.data[2][2] + v.w * m.data[3][2];
+    p.w = v.x * m.data[0][3] + v.y * m.data[1][3] + v.z * m.data[2][3] + v.w * m.data[3][3];
+    return p;
 }
