@@ -6,33 +6,32 @@
 
 float absf(float f)
 {
-    return f * (f >= 0.0f) - f * (f < 0.0f);
+    return (f < 0.0) ? -f : f;
 }
 
 float signf(float f)
 {
-    return (f >= 0.0f) - (f < 0.0f);
+    return (f < 0.0) ? -1.0 : 1.0;
 }
 
 float minf(float a, float b)
 {
-    return a * (a <= b) + b * (b < a);
+    return (a < b) ? a : b;
 }
 
 float maxf(float a, float b)
 {
-    return a * (a >= b) + b * (b > a);
+    return (a > b) ? a : b;
 }
 
 float clampf(float val, float min, float max)
 {
-    float t = (val < min) * min + (val >= min) * val;
-    return (t > max) * max + (t <= max) * t;
+    return maxf(minf(max, val), min);
 }
 
 float lerpf(float a, float b, float t)
 {
-    return (a * (1.0 - t)) + (b * t);
+    return a + t * (b - a);
 }
 
 float smoothlerpf(float a, float b, float t)
@@ -52,7 +51,7 @@ float remapf(float in_a, float in_b, float out_a, float out_b, float val)
 
 float smoothstep(float a, float b, float x) 
 {
-    x = clampf((x - a) / (b - a), 0.0f, 1.0f);
+    x = clampf((x - a) / (b - a), 0.0, 1.0);
     return x * x * (3.0 - 2.0 * x);
 }
 
@@ -96,12 +95,12 @@ float sqrtfaster(float num)
 
 float rad_to_deg(float rad) 
 {
-    return rad * (180.0f / M_PI);
+    return rad * (180.0 / M_PI);
 }
 
 float deg_to_rad(float deg)
 {
-    return deg / (180.0f / M_PI);
+    return deg / (180.0 / M_PI);
 }
 
 float vec2_to_rad(vec2 v)
