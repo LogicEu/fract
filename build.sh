@@ -9,7 +9,9 @@ flags=(
     -std=c99
     -Wall
     -Wextra
+    -pedantic
     -O2
+    -ffast-math
 )
 
 shared() {

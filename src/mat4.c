@@ -228,3 +228,4 @@ vec4 vec4_mult_mat4(vec4 v, mat4 m)
     p.w = v.x * m.data[0][3] + v.y * m.data[1][3] + v.z * m.data[2][3] + v.w * m.data[3][3];
     return p;
 }
+

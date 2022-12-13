@@ -1,7 +1,7 @@
 # fract makefile
 
 STD=-std=c99
-WFLAGS=-Wall -Wextra
+WFLAGS=-Wall -Wextra -pedantic -ffast-math
 OPT=-O2
 IDIR=-I.
 CC=gcc

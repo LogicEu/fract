@@ -316,26 +316,8 @@ mat4 mat4_look_at(vec3 eye_position, vec3 eye_direction, vec3 eye_up);
 mat4 mat4_model(vec3 translation, vec3 scale, vec3 rot_axis, float rot_degs);
 vec4 vec4_mult_mat4(vec4 v, mat4 m);
 
-
-/*-----------------------
- -> Print Data Types <- 
------------------------*/
-
-/***************************
- -> formating to stdout   <- 
-***************************/
-
-void ivec2_print(ivec2 v);
-void ivec3_print(ivec3 v);
-void ivec4_print(ivec4 v);
-void vec2_print(vec2 v);
-void vec3_print(vec3 v);
-void vec4_print(vec4 v);
-void mat2_print(mat2 m);
-void mat3_print(mat3 m);
-void mat4_print(mat4 m);
-
 #ifdef __cplusplus
 }
 #endif
-#endif
+#endif /* FRACT_MATH_H */
+

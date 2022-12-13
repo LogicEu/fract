@@ -47,8 +47,8 @@ float perlin2d(float x, float y, float freq, int depth, int seed)
     float amp = 1.0f;
     float fin = 0.0f;
     float div = 0.0f;
-
-    for(int i = 0; i < depth; i++) {
+    int i;
+    for(i = 0; i < depth; i++) {
         div += 256.0f * amp;
         fin += noise2d(xa, ya, seed) * amp;
         amp *= 0.5f;

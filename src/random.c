@@ -5,7 +5,7 @@
  -> OS independent pseudo random algorithms <- 
 *********************************************/
 
-static unsigned int global_seed = 0;
+static unsigned int seed = 0;
 
 unsigned int rand_uint(unsigned int num)
 {
@@ -15,17 +15,17 @@ unsigned int rand_uint(unsigned int num)
 
 unsigned int rand_num() 
 {
-    return rand_uint(global_seed);
+    return rand_uint(seed);
 }
 
 unsigned int rand_next()
 {
-    return rand_uint(global_seed++);
+    return rand_uint(seed++);
 }
 
-void rand_seed(unsigned int seed) 
+void rand_seed(unsigned int n) 
 {
-    global_seed = seed;
+    seed = n;
 }
 
 float randf_norm()
@@ -37,3 +37,4 @@ float randf_signed()
 {
     return 2.0 * ((float)rand_next() / (float)INT_MAX) - 1.0;
 }
+
