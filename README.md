@@ -51,7 +51,7 @@ int main()
 
 > There are two build scripts in this repository, one is a Makefile and the
 > other a shell script. You can compile the library with any of the two.
-> The build scripts currently work on Linux and MacOS.
+> Both of them currently work on Linux and MacOS.
 
 ```shell
 make all -j # or ./build.sh all
