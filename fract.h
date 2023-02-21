@@ -28,26 +28,6 @@ typedef struct vec4 {
     float x, y, z, w;
 } vec4;
 
-typedef struct ivec2 {
-    int x, y;
-} ivec2;
-
-typedef struct ivec3 {
-    int x, y, z;
-} ivec3;
-
-typedef struct ivec4 {
-    int x, y, z, w;
-} ivec4;
-
-typedef struct mat2 {
-    float data[2][2];
-} mat2;
-
-typedef struct mat3 {
-    float data[3][3];
-} mat3;
-
 typedef struct mat4 {
     float data[4][4];
 } mat4;
@@ -60,12 +40,18 @@ typedef struct mat4 {
  -> OS independent pseudo random algorithms <- 
 *********************************************/
 
-void rand_seed(unsigned int seed);
-unsigned int rand_uint(unsigned int num);
-unsigned int rand_num();
-unsigned int rand_next();
-float randf_norm();
-float randf_signed();
+void frand_seed_set(unsigned int seed);
+unsigned int frand_seed_get(void);
+unsigned int frand_uint(unsigned int num);
+float frand_norm(void);
+float frand_signed(void);
+
+/**************************************
+ -> 2D perlin noise useful functions <- 
+**************************************/
+
+float noise2d(float x, float y, int seed);
+float perlin2d(float x, float y, float freq, int depth, int seed);
 
 /********************************************
  -> floating point functions and utilities <- 
@@ -98,22 +84,10 @@ float sqrtfaster(float num);
  -> floating point angles and vector transformations <- 
 ******************************************************/
 
-float rad_to_deg(float rad);
-float deg_to_rad(float deg);
+vec2 rad2vec2(float rad);
+float rad2deg(float rad);
+float deg2rad(float deg);
 float vec2_to_rad(vec2 v);
-vec2 rad_to_vec2(float rad);
-
-/**************************************
- -> 2D perlin noise useful functions <- 
-**************************************/
-
-float noise2d(float x, float y, int seed);
-float perlin2d(float x, float y, float freq, int depth, int seed);
-
-
-/*---------------------------------------
- -> Vector Structures and Operations <- 
----------------------------------------*/
 
 /*******************************************
  -> two dimensional floating point vector <- 
@@ -252,54 +226,12 @@ vec4 vec4_lerp(vec4 a, vec4 b, float t);
 void vec4_move(vec4* v, vec4 move);
 void vec4_scale(vec4* v, float scale);
 
-/*******************************
- -> integer vector structures <- 
-*******************************/
-
-ivec2 ivec2_new(int x, int y);
-ivec2 ivec2_uni(int i);
-int ivec2_cmp(ivec2 v1, ivec2 v2);
-
-ivec3 ivec3_new(int x, int y, int z);
-ivec3 ivec3_uni(int i);
-int ivec3_cmp(ivec3 v1, ivec3 v2);
-
-ivec4 ivec4_new(int x, int y, int z, int w);
-ivec4 ivec4_uni(float i);
-int ivec4_cmp(ivec4 v1, ivec4 v2);
-
-/***********************************************
- -> integer and floating point vector casting <- 
-***********************************************/
-
-ivec2 vec2_to_ivec2(vec2 v);
-ivec3 vec3_to_ivec3(vec3 v);
-ivec4 vec4_to_ivec4(vec4 v);
-
-vec2 ivec2_to_vec2(ivec2 v);
-vec3 ivec3_to_vec3(ivec3 v);
-vec4 ivec4_to_vec4(ivec4 v);
-
-
-/*---------------------------------------
- -> Matrix Structures and Operations <- 
----------------------------------------*/
-
-/***************************************************
- ->   lightweight stack matrix data structures <- 
-***************************************************/
-
-mat2 mat2_new();
-mat2 mat2_id();
-mat3 mat3_new();
-mat3 mat3_id();
-mat4 mat4_new();
-mat4 mat4_id();
-
 /******************************************
  -> 4x4 matrix functions and operations  <- 
 ******************************************/
 
+mat4 mat4_new(void);
+mat4 mat4_id(void);
 mat4 mat4_translate(mat4 mat, vec3 v);
 mat4 mat4_scale(mat4 mat, vec3 v);
 mat4 mat4_mult(mat4 m1, mat4 m2);

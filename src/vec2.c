@@ -133,26 +133,26 @@ void vec2_scale(vec2* v, float scale)
 vec2 vec2_rotate(vec2 src, float rads)
 {
     float r = vec2_to_rad(src) + rads;
-    return vec2_mult(rad_to_vec2(r), vec2_mag(src));
+    return vec2_mult(rad2vec2(r), vec2_mag(src));
 }
 
 vec2 vec2_rotate_around(vec2 src, vec2 center, float rads)
 {
     vec2 v = _vec2_sub(src, center);
     float r = vec2_to_rad(v) + rads;
-    return vec2_add(center, vec2_mult(rad_to_vec2(r), vec2_mag(v)));
+    return vec2_add(center, vec2_mult(rad2vec2(r), vec2_mag(v)));
 }
 
 vec2 vec2_scale_around(vec2 src, vec2 center, float scale)
 {
     vec2 v = _vec2_sub(src, center);
     float r = vec2_to_rad(v);
-    return vec2_add(center, vec2_mult(rad_to_vec2(r), vec2_mag(v) * scale));
+    return vec2_add(center, vec2_mult(rad2vec2(r), vec2_mag(v) * scale));
 }
 
 vec2 vec2_rotate_and_scale_around(vec2 src, vec2 center, float rads, float scale)
 {
     vec2 v = _vec2_sub(src, center);
     float r = vec2_to_rad(v) + rads;
-    return vec2_add(center, vec2_mult(rad_to_vec2(r), vec2_mag(v) * scale));
+    return vec2_add(center, vec2_mult(rad2vec2(r), vec2_mag(v) * scale));
 }

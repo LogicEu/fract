@@ -3,7 +3,6 @@
 cc=gcc
 src=src/*.c
 name=libfract
-inc=-I.
 
 flags=(
     -std=c99
@@ -12,20 +11,46 @@ flags=(
     -pedantic
     -O2
     -ffast-math
+    -I.
 )
 
+if echo "$OSTYPE" | grep -q "darwin"; then
+    dlib=(
+        -dynamiclib
+    )
+    suffix=.dylib
+elif echo "$OSTYPE" | grep -q "linux"; then
+    dlib=(
+        -shared
+        -fPIC
+    )
+    suffix=.so
+else
+    echo "This OS is not supported by this shell script yet..." && exit
+fi
+
+comp() {
+    echo "$@" && $@
+}
+
 shared() {
-    if echo "$OSTYPE" | grep -q "darwin"; then
-        $cc ${flags[*]} $inc -dynamiclib $src -o $name.dylib 
-    elif echo "$OSTYPE" | grep -q "linux"; then
-        $cc -shared ${flags[*]} $inc ${lib[*]} -lm -fPIC $src -o $name.so 
-    else
-        echo "This OS is not supported yet..." && exit
-    fi
+    mkdir -p tmp
+    comp $cc -c $src ${flags[*]} && mv *.o tmp/ || exit
+    
+    mkdir -p bin
+    comp $cc tmp/*.o -o bin/$name$suffix ${dlib[*]}
 }
 
 static() {
-    $cc ${flags[*]} $inc -c $src && ar -cr $name.a *.o && rm *.o
+    mkdir -p tmp
+    comp $cc ${flags[*]} -c $src && mv *.o tmp/ || exit
+    
+    mkdir -p bin
+    comp ar -cr bin/$name.a tmp/*.o
+}
+
+cleand() {
+    [ -d $1 ] && rm -r $1 && echo "deleted $1"
 }
 
 cleanf() {
@@ -33,22 +58,21 @@ cleanf() {
 }
 
 clean() {
-    cleanf $name.a
-    cleanf $name.so
-    cleanf $name.dylib
+    cleand bin
+    cleand tmp
     return 0
 }
 
 install() {
     [ "$EUID" -ne 0 ] && echo "Run with sudo to install" && exit
+    
+    make all -j
+    cp fract.h /usr/local/include/
 
-    static && shared
-    cp fract.h /usr/local/include
-
-    [ -f $name.a ] && mv $name.a /usr/local/lib
-    [ -f $name.so ] && mv $name.so /usr/local/lib
-    [ -f $name.dylib ] && mv $name.dylib /usr/local/lib
-
+    [ -f bin/$name.a ] && mv bin/$name.a /usr/local/lib
+    [ -f bin/$name.so ] && mv bin/$name.so /usr/local/lib
+    [ -f bin/$name.dylib ] && mv bin/$name.dylib /usr/local/lib
+    
     echo "Successfully installed $name"
     return 0
 }
@@ -61,7 +85,7 @@ uninstall() {
     cleanf /usr/local/lib/$name.so
     cleanf /usr/local/lib/$name.dylib
 
-    echo "Succesfully uninstalled $name"
+    echo "Successfully uninstalled $name"
     return 0
 }
 
@@ -70,6 +94,10 @@ case "$1" in
         shared;;
     "static")
         static;;
+    "all")
+        shared && static;;
+    "make")
+        make all -j;;
     "clean")
         clean;;
     "install")
@@ -79,5 +107,5 @@ case "$1" in
     *)
         echo "Run with 'shared' or 'static' to build"
         echo "Use 'install' to build and install in /usr/local"
-        echo "Use 'clean' to remove local builds";;
+        echo "Use 'clean' to remove local builds"
 esac

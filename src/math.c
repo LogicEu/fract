@@ -1,8 +1,8 @@
 #include <fract.h>
 
-/********************************************
- -> floating point functions and utilities <- 
-********************************************/
+/**************************
+ -> floating point math  <- 
+***************************/
 
 float absf(float f)
 {
@@ -89,31 +89,27 @@ float sqrtfaster(float num)
     return num * isqrtfaster(num);
 }
 
-/******************************************************
- -> floating point angles and vector transformations <- 
-******************************************************/
+/*************************************
+ -> floating point angles vs vector <- 
+*************************************/
 
-float rad_to_deg(float rad) 
+float rad2deg(float rad) 
 {
     return rad * (180.0 / M_PI);
 }
 
-float deg_to_rad(float deg)
+float deg2rad(float deg)
 {
     return deg / (180.0 / M_PI);
 }
 
 float vec2_to_rad(vec2 v)
 {
-    return atan2(v.y, v.x);
+    return atan2f(v.y, v.x);
 }
 
-vec2 rad_to_vec2(float rad)
+vec2 rad2vec2(float rad)
 {
     return (vec2){cosf(rad), sinf(rad)};
 }
 
-float vec2_2_rad(vec2 v1, vec2 v2)
-{
-    return atan2(v1.y - v2.y, v1.x - v2.x);
-}

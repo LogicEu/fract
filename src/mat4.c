@@ -1,12 +1,30 @@
 #include <fract.h>
 
-/******************************************
- -> 4x4 matrix functions and operations  <- 
-******************************************/
+/****************************
+ -> 4x4 matrix operations  <- 
+*****************************/
 
-mat4 mat4_translate(mat4 mat, vec3 v)
+mat4 mat4_new(void)
 {
-    mat4 m = mat;
+    return (mat4) {{
+        {0.0f, 0.0f, 0.0f, 0.0f},
+        {0.0f, 0.0f, 0.0f, 0.0f},
+        {0.0f, 0.0f, 0.0f, 0.0f},
+        {0.0f, 0.0f, 0.0f, 0.0f}
+    }};
+}
+
+mat4 mat4_id(void)
+{
+    mat4 m = mat4_new();
+    for (int i = 0; i < 4; i++) {
+        m.data[i][i] = 1.0f;
+    }
+    return m;
+}
+
+mat4 mat4_translate(mat4 m, vec3 v)
+{
     m.data[3][0] = v.x;
     m.data[3][1] = v.y;
     m.data[3][2] = v.z;

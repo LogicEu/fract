@@ -1,35 +1,63 @@
-# fract makefile
+# utopia makefile
 
-STD=-std=c99
-WFLAGS=-Wall -Wextra -pedantic -ffast-math
-OPT=-O2
-IDIR=-I.
-CC=gcc
-NAME=libfract
-SRC=src/*.c
+NAME = libfract
 
-CFLAGS=$(STD) $(WFLAGS) $(OPT) $(IDIR)
+CC = gcc
+STD = -std=c99
+WFLAGS = -Wall -Wextra -pedantic
+OPT = -O2 -ffast-math
+INC = -I.
+
+SRCDIR = src
+TMPDIR = tmp
+BINDIR = bin
+
+SCRIPT = build.sh
+SRC = $(wildcard $(SRCDIR)/*.c)
+OBJS = $(patsubst $(SRCDIR)/%.c,$(TMPDIR)/%.o,$(SRC))
+
 OS=$(shell uname -s)
-
 ifeq ($(OS),Darwin)
-	OSFLAGS=-dynamiclib
-	LIB=$(NAME).dylib
+	DLIB = -dynamiclib
+	SUFFIX = .dylib
 else
-	OSFLAGS=-lm -shared -fPIC
-	LIB=$(NAME).so
+	DLIB = -shared -fPIC
+	SUFFIX = .so
 endif
 
-$(NAME).a: $(SRC)
-	$(CC) $(CFLAGS) -c $(SRC) && ar -cr $(NAME).a *.o && rm *.o
+TARGET = $(BINDIR)/$(NAME)
+LIB = $(TARGET)$(SUFFIX)
 
-shared: $(SRC)
-	$(CC) -o $(LIB) $(SRC) $(CFLAGS) $(OSFLAGS)
+CFLAGS = $(STD) $(WFLAGS) $(OPT) $(INC)
 
-clean: build.sh
+$(TARGET).a: $(BINDIR) $(OBJS)
+	ar -cr $@ $(OBJS)
+
+.PHONY: shared all clean install uninstall
+
+shared: $(LIB)
+
+all: $(LIB) $(TARGET).a
+
+$(LIB): $(BINDIR) $(OBJS)
+	$(CC) $(CFLAGS) $(DLIB) -o $@ $(OBJS)
+
+$(TMPDIR)/%.o: $(SRCDIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJS): | $(TMPDIR)
+
+$(TMPDIR):
+	mkdir -p $@
+
+$(BINDIR):
+	mkdir -p $@
+
+clean: $(SCRIPT)
 	./$^ $@
 
-install: build.sh
+install: $(SCRIPT)
 	./$^ $@
 
-uninstall: build.sh
-	./$^ $@	
+uninstall: $(SCRIPT)
+	./$^ $@
