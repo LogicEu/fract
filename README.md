@@ -50,13 +50,13 @@ int main()
 ## Build
 
 > There are two build scripts in this repository, one is a Makefile and the
-> other is a shell script. You can compile the library with any of the two.
+> other a shell script. You can compile the library with any of the two.
 > The build scripts currently work on Linux and MacOS.
 
 ```shell
 make all -j # or ./build.sh all
 ```
-> The bash script contains a simple installation function that builds the
+> There is a simple installation function that builds the
 > library and puts it in the /usr/local directory:
 
 ```shell
