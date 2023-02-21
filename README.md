@@ -1,6 +1,6 @@
 # fract
 
-> Small vector and matrix math library for game development written in C99. Fully
+> Small math library for game and graphics written in C99. Fully
 > compatible with OpenGL. Some of the features of the library are: 
 
 * Pseudo Random Number Generator
@@ -9,7 +9,9 @@
 * 4x4 Matrix Operations (Projections, Rotations, etc...)
 * Lerp, Smoothlerp, Sqrtfast, Clamp, etc...
 
-> Fract has a single header fract.h that includes all declarations.
+> Fract has a single header file fract.h that includes all declarations. The only
+> dependency of fract is the standard math library, used mainly for
+> trigonometry.
 
 ## Example
 
@@ -47,8 +49,9 @@ int main()
 
 ## Build
 
-> There are two build scripts in this repository to build the library. You can easily 
-> compile fract as static and dynamic library with the following command:
+> There are two build scripts in this repository, one is a Makefile and the
+> other is a shell script. You can compile the library with any of the two.
+> The build scripts currently work on Linux and MacOS.
 
 ```shell
 make all -j # or ./build.sh all
@@ -60,8 +63,9 @@ make all -j # or ./build.sh all
 sudo make install # or sudo ./build.sh install
 ```
 
-> Remember to clean object files and binaries created during compilation in /tmp 
+> Clean object files and binaries created during compilation in /tmp 
 > and /bin with:
+
 ```shell
 make clean # or ./build.sh clean
 ```
