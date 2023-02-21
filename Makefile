@@ -1,4 +1,4 @@
-# utopia makefile
+# fract makefile
 
 NAME = libfract
 
