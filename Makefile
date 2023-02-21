@@ -21,7 +21,7 @@ ifeq ($(OS),Darwin)
 	DLIB = -dynamiclib
 	SUFFIX = .dylib
 else
-	DLIB = -shared -fPIC
+	DLIB = -lm -shared -fPIC
 	SUFFIX = .so
 endif
 

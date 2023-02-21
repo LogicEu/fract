@@ -21,6 +21,7 @@ if echo "$OSTYPE" | grep -q "darwin"; then
     suffix=.dylib
 elif echo "$OSTYPE" | grep -q "linux"; then
     dlib=(
+        -lm
         -shared
         -fPIC
     )

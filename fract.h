@@ -66,7 +66,7 @@ typedef struct mat4 {
 
 void frand_seed_set(unsigned int seed);
 unsigned int frand_seed_get(void);
-unsigned int frand_uint(unsigned int num);
+unsigned int frand_uint(void);
 float frand_norm(void);
 float frand_signed(void);
 
